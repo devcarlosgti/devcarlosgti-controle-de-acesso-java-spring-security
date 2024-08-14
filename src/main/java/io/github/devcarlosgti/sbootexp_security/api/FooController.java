@@ -1,6 +1,7 @@
 package io.github.devcarlosgti.sbootexp_security.api;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -13,7 +14,8 @@ public class FooController {
     }
 
     @GetMapping("/private")
-    public ResponseEntity<String> privateRoute(){
-        return ResponseEntity.ok("Private route ok!");
+    public ResponseEntity<String> privateRoute(Authentication authentication){
+        System.out.println(authentication.getClass());
+        return ResponseEntity.ok("Private route ok! Usuário Conectado: " + authentication.getName());
     }
 }
